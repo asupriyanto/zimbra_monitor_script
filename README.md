@@ -28,7 +28,7 @@ Kumpulan script monitoring untuk membantu administrator Zimbra dalam melakukan p
 - Jalankan script sesuai kebutuhan monitoring
   ```bash
   ./server-info.sh
-- Buat crontab untuk script server-info.sh
+- Buat cron job di crontab untuk script server-info.sh
   ```bash
   0 */6 * * * /<path_folder>/server-info.sh
 
