@@ -55,19 +55,19 @@ SENDER_CHECK=$(
 MAIL_INFO=""
 
 if [ "${MAIL_ACTIVE}" -ge 50 ]; then
-    MAIL_INFO+="<pre>Active Queue : ${MAIL_ACTIVE}</pre>\n"
+    MAIL_INFO+="<pre>Active Queue : ${MAIL_ACTIVE}</pre>"
 fi
 
 if [ "${MAIL_HOLD}" -ge 50 ]; then
-    MAIL_INFO+="<pre>Hold Queue : ${MAIL_HOLD}</pre>\n"
+    MAIL_INFO+="<pre>Hold Queue : ${MAIL_HOLD}</pre>"
 fi
 
 if [ "${MAIL_DEFERRED}" -ge 50 ]; then
-    MAIL_INFO+="<pre>Deferred Queue : ${MAIL_DEFERRED}</pre>\n"
+    MAIL_INFO+="<pre>Deferred Queue : ${MAIL_DEFERRED}</pre>"
 fi
 
 if [ "${MAIL_INCOMING}" -ge 50 ]; then
-    MAIL_INFO+="<pre>Incoming Queue : ${MAIL_INCOMING}</pre>\n"
+    MAIL_INFO+="<pre>Incoming Queue : ${MAIL_INCOMING}</pre>"
 fi
 
 ## Message
