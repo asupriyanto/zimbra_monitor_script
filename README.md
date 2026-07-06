@@ -6,6 +6,7 @@ Kumpulan script monitoring untuk membantu administrator Zimbra dalam melakukan p
 
 - Monitoring status service Zimbra
 - Monitoring penggunaan CPU, Memory, dan Disk
+- Monitoring Mail Queue (queue-alert.sh)
 - Output sederhana dan mudah diotomatisasi
 - Kirim notifikasi ke telegram
 
