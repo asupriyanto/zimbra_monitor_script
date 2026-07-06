@@ -16,7 +16,7 @@ if ! source "$CONFIG"; then
     exit 1
 fi
 
-for var in URL CHAT_ID CONNECT_TIMEOUT MAX_TIME RETRY RETRY_DELAY;do
+for var in URL CHAT_ID CONNECT_TIMEOUT MAX_TIME RETRY RETRY_DELAY; do
     if [ -z "${!var}" ]; then
         echo "[ERROR] $var is not defined in $CONFIG"
         exit 1
