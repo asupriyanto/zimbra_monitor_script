@@ -25,7 +25,7 @@ done
 
 ## MAIN CODE
 ZHOST=$(hostname)
-DATE=$(date '+%d+%m+%Y %H:%M:%S')
+DATE=$(date '+%d-%m-%Y %H:%M:%S')
 
 run_zmqstat() {
     /opt/zimbra/libexec/zmqstat 2>/dev/null
