@@ -95,19 +95,11 @@ if has_service ldap; then
     ROLE_INFO="${ROLE_INFO}
 Server LDAP ✅
 "
-else
-    ROLE_INFO="${ROLE_INFO}
-Server LDAP ❌
-"
 fi
 
 if has_service mailbox; then
     ROLE_INFO="${ROLE_INFO}
 Server Mailbox ✅
-"
-else
-    ROLE_INFO="${ROLE_INFO}
-Server Mailbox ❌
 "
 fi
 
@@ -115,24 +107,15 @@ if has_service mta; then
     ROLE_INFO="${ROLE_INFO}
 Server MTA ✅
 "
-else
-    ROLE_INFO="${ROLE_INFO}
-Server MTA ❌
-"
 fi
 
 if has_service proxy; then
     ROLE_INFO="${ROLE_INFO}
 Server Proxy ✅
 "
-else
-    ROLE_INFO="${ROLE_INFO}
-Server Proxy ❌
-"
 fi
 ROLE_INFO="${ROLE_INFO}
 </pre>"
-
 
 # Message
 MESSAGE="
@@ -148,6 +131,8 @@ Date     : ${DATE}
 <b>💾 Disk Information</b>
 <pre>${DISK_INFO}</pre>
 
+${ROLE_INFO}
+
 <b>🧠 Memory Information</b>
 <pre>${MEM_INFO}</pre>
 
@@ -162,7 +147,6 @@ Date     : ${DATE}
 
 ${LDAP_REPLCHK}
 ${MBOX_ACCOUNT}
-${ROLE_INFO}
 "
 
 curl -s \
