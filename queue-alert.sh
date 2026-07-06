@@ -32,7 +32,7 @@ run_zmqstat() {
 }
 
 ZQSTAT=$(run_zmqstat)
-
+THRESHOLD="50"
 MAIL_ACTIVE=$(echo "${ZQSTAT}" | awk -F= '/active/ {print $2}')
 MAIL_HOLD=$(echo "${ZQSTAT}" | awk -F= '/hold/ {print $2}')
 MAIL_DEFERRED=$(echo "${ZQSTAT}"| awk -F= '/deferred/ {print $2}')
@@ -54,19 +54,19 @@ SENDER_CHECK=$(
 
 MAIL_INFO=""
 
-if [ "${MAIL_ACTIVE}" -ge 50 ]; then
+if [ "${MAIL_ACTIVE}" -ge ${THRESHOLD} ]; then
     MAIL_INFO+="<pre>Active Queue : ${MAIL_ACTIVE}</pre>"
 fi
 
-if [ "${MAIL_HOLD}" -ge 50 ]; then
+if [ "${MAIL_HOLD}" -ge ${THRESHOLD} ]; then
     MAIL_INFO+="<pre>Hold Queue : ${MAIL_HOLD}</pre>"
 fi
 
-if [ "${MAIL_DEFERRED}" -ge 50 ]; then
+if [ "${MAIL_DEFERRED}" -ge ${THRESHOLD} ]; then
     MAIL_INFO+="<pre>Deferred Queue : ${MAIL_DEFERRED}</pre>"
 fi
 
-if [ "${MAIL_INCOMING}" -ge 50 ]; then
+if [ "${MAIL_INCOMING}" -ge ${THRESHOLD} ]; then
     MAIL_INFO+="<pre>Incoming Queue : ${MAIL_INCOMING}</pre>"
 fi
 
