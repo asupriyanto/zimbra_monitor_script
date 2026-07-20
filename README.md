@@ -20,9 +20,9 @@ Kumpulan script monitoring untuk membantu administrator Zimbra dalam melakukan p
 - Ubah ownership file server-info.sh dan telegram.conf menjadi milik root
   ```bash
   chown root:root telegram.conf server-info.sh
-- Ubah permission file telegram.conf menjadi 600
+- Ubah permission file telegram.conf menjadi 644
   ```bash
-  chmod 600 telegram.conf
+  chmod 0644 telegram.conf
 - Ubah permission file server-info.sh menjadi 700
   ```bash
   chmod 700 server-info.sh
