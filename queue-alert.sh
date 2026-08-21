@@ -4,7 +4,7 @@ set -u
 set -o pipefail
 
 # Telegram Configuration
-CONFIG="/opt/zimbra/scripts/telegram.conf"
+CONFIG="telegram.conf"
 if [ ! -f "$CONFIG" ]; then
     echo "ERROR: Telegram config not found: $CONFIG"
     exit 1
@@ -24,15 +24,15 @@ for var in URL CHAT_ID CONNECT_TIMEOUT MAX_TIME RETRY RETRY_DELAY;do
 done
 
 ## MAIN CODE
-ZHOST=$(hostname)
-DATE=$(date '+%d-%m-%Y %H:%M:%S')
+ZHOST=$(hostname -f)
+DATE=$(date '+%d-%m-%Y %H:%M')
 
 run_zmqstat() {
     /opt/zimbra/libexec/zmqstat 2>/dev/null
 }
 
 ZQSTAT=$(run_zmqstat)
-THRESHOLD="50"
+THRESHOLD="25"
 MAIL_ACTIVE=$(echo "${ZQSTAT}" | awk -F= '/active/ {print $2}')
 MAIL_HOLD=$(echo "${ZQSTAT}" | awk -F= '/hold/ {print $2}')
 MAIL_DEFERRED=$(echo "${ZQSTAT}"| awk -F= '/deferred/ {print $2}')
@@ -72,14 +72,12 @@ fi
 
 ## Message
 MESSAGE="
-<b>Queue ALert - ${ZHOST}</b>
-
+<b>[QUEUE ALERT]</b>
 <pre>
-Date : ${DATE}
+Date     : ${DATE}
+Hostname : ${ZHOST}
 </pre>
-
 ${MAIL_INFO}
-
 <pre>
 Top Sender:
 ${SENDER_CHECK}
