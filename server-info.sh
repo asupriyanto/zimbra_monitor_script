@@ -4,7 +4,7 @@ set -u
 set -o pipefail
 
 # Konfigurasi Telegram
-CONFIG="/opt/zimbra/scripts/telegram.conf"
+CONFIG="telegram.conf"
 if [ ! -f "$CONFIG" ]; then
     echo "ERROR: Telegram config not found: $CONFIG"
     exit 1
@@ -29,6 +29,8 @@ UPTIME=$(uptime -p)
 DATE=$(date '+%d-%m-%Y %H:%M:%S %Z')
 IP=$(hostname -I)
 DISK_INFO=$(df -h -x tmpfs -x devtmpfs -x squashfs --output=source,size,used,avail,pcent,target)
+INODE_INFO=$(df -i -x tmpfs)
+TASK_INFO=$(top -bn1 | grep "^Tasks")
 MEM_INFO=$(free -h | awk '
 /^Mem:/ {
     printf "Total : %s\nUsed  : %s\nFree  : %s\nCache : %s\n",$2,$3,$4,$6
@@ -119,32 +121,30 @@ ROLE_INFO="${ROLE_INFO}
 
 # Message
 MESSAGE="
+<b>[HEALTH CHECK REPORT]</b>
 <b>🖥️ Server Information</b>
 <pre>
+Date     : ${DATE}
 Hostname : ${ZHOST}
 OS       : ${OS}
 Uptime   : ${UPTIME}
 IP       : ${IP}
-Date     : ${DATE}
+${TASK_INFO}
 </pre>
 
 <b>💾 Disk Information</b>
 <pre>${DISK_INFO}</pre>
-
-${ROLE_INFO}
-
+<b>Inode Information</b>
+<pre>${INODE_INFO}</pre>
 <b>🧠 Memory Information</b>
 <pre>${MEM_INFO}</pre>
-
 <b>📧 Zimbra Version</b>
 <pre>${ZVERSION}</pre>
-
 <b>🔧 Zimbra Services</b>
 <pre>${ZSERVICES}</pre>
-
 <b>✅ Zimbra Status</b>
 <pre>${ZSTATUS}</pre>
-
+${ROLE_INFO}
 ${LDAP_REPLCHK}
 ${MBOX_ACCOUNT}
 "
