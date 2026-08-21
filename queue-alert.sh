@@ -73,6 +73,7 @@ fi
 ## Message
 MESSAGE="
 <b>[QUEUE ALERT]</b>
+
 <pre>
 Date     : ${DATE}
 Hostname : ${ZHOST}
