@@ -122,6 +122,7 @@ ROLE_INFO="${ROLE_INFO}
 # Message
 MESSAGE="
 <b>[HEALTH CHECK REPORT]</b>
+
 <b>🖥️ Server Information</b>
 <pre>
 Date     : ${DATE}
